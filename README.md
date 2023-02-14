@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+<!-- Title -->
+<h1>Connect MetaMask Wallet Contract</h1>
+<!-- Description -->
+<p>
+  This is an implementation of a contract that allows users to connect their MetaMask wallet to the contract, written in Solidity. The contract provides basic functionality for interacting with the connected wallet, including retrieving the user's address and balance.
+</p>
+<!-- Table of Contents -->
+<h2>Table of Contents</h2>
+<ul>
+  <li><a href="#requirements">Requirements</a></li>
+  <li><a href="#usage">Usage</a></li>
+  <li><a href="#contributing">Contributing</a></li>
+  <li><a href="#license">License</a></li>
+</ul>
+<!-- Requirements -->
+<h2 id="requirements">Requirements</h2>
+<p>
+  This project requires the Solidity compiler to be installed. You can download the Solidity compiler from the <a href="https://solidity.readthedocs.io/en/latest/installing-solidity.html">official Solidity website</a>. No additional packages or libraries are needed.
+</p>
+<!-- Usage -->
+<h2 id="usage">Usage</h2>
+<p>
+  To use the Connect MetaMask Wallet contract in your project, simply import the <code>ConnectMetaMask.sol</code> file into your Solidity contract, and interact with the contract's functions:
+</p>
+solidity
+Copy code
+pragma solidity ^0.8.0;
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+import "./ConnectMetaMask.sol";
 
-## Available Scripts
+contract MyContract {
+  ConnectMetaMask private connectContract;
 
-In the project directory, you can run:
+  constructor(address _connectAddress) {
+    connectContract = ConnectMetaMask(_connectAddress);
+  }
 
-### `npm start`
+  function getBalance() public view returns (uint256) {
+    return connectContract.getBalance();
+  }
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  // ...
+}
+The Connect MetaMask Wallet contract provides the following functionality:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The <code>connect</code> function, which allows users to connect their MetaMask wallet to the contract
+The <code>getAddress</code> function, which returns the user's MetaMask wallet address
+The <code>getBalance</code> function, which returns the user's MetaMask wallet balance
+Here's an example of how to use the <code>connect</code>, <code>getAddress</code>, and <code>getBalance</code> functions:
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+solidity
+Copy code
+function getUserData() external view returns (address, uint256) {
+  connectContract.connect();
+  address userAddress = connectContract.getAddress();
+  uint256 userBalance = connectContract.getBalance();
+  return (userAddress, userBalance);
+}
+<!-- Contributing -->
+<h2 id="contributing">Contributing</h2>
+<p>
+  Contributions to this project are welcome. To contribute, simply fork this repository, make your changes, and submit a pull request.
+</p>
+<!-- License -->
+<h2 id="license">License</h2>
+<p>
+  This project is licensed under the MIT License - see the <a href="LICENSE.md">LICENSE.md</a> file for details.
+</p> 
